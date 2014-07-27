@@ -1,0 +1,35 @@
+---
+title       : Exploratory Analysis of Motor Trend Dataset with Decision Tree 
+subtitle    : 
+author      : Yuwei Cui
+job         : University of Maryland, College Park
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+---
+
+## The Motor Trend Dataset
+
+- The motor trend dataset (mtcars) is a build in dataset in R.
+It contains fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.
+
+- Let's load the dataset into R and look at the first three observations:
+```{r}
+data(mtcars)
+head(mtcars,3)
+```
+
+- We will build a tool that allows exploratory analysis of the mtcars dataset
+
+--- .class #id 
+
+## Decision Tree Models
+
+- We will build a tool that allows exploratory analysis of the mtcars dataset
+
+
+
+

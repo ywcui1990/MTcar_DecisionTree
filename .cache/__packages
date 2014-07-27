@@ -1,0 +1,16 @@
+base
+datasets
+graphics
+grDevices
+knitr
+markdown
+methods
+rattle
+RColorBrewer
+rpart
+rpart.plot
+shiny
+shinyapps
+slidify
+stats
+utils
