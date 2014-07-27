@@ -1,3 +1,0 @@
-This shiny app builds decision tree models using the moter trend data set (mtcars) in R. 
-
-Please select 

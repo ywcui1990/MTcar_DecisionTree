@@ -48,8 +48,8 @@
   <article data-timings="">
     <ul>
 <li><p>The motor trend dataset (mtcars) is a build in dataset in R.
-It contains fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).</p></li>
-<li><p>Let&#39;s load the dataset in R and look at the first three observations:</p></li>
+It contains fuel consumption and 10 aspects of automobile design and performance for 32 automobiles.</p></li>
+<li><p>Let&#39;s load the dataset into R and look at the first three observations:</p></li>
 </ul>
 
 <pre><code class="r">data(mtcars)
@@ -62,16 +62,80 @@ head(mtcars,3)
 ## Datsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
 </code></pre>
 
+<ul>
+<li>We will build a tool that allows exploratory analysis of the mtcars dataset. You can find the shiny application online <a href="http://ywcui.shinyapps.io/MTcar_DecisionTree/">here</a>.</li>
+</ul>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
 
 <slide class="class" id="id" style="background:;">
   <hgroup>
-    <h2>Decision Tree Models</h2>
+    <h2>Decision Tree</h2>
   </hgroup>
   <article data-timings="">
-    
+    <ul>
+<li>Decision tree is a decision support tool that uses a tree-like graph to understand consequences of decisions. More information can be found on this <a href="http://en.wikipedia.org/wiki/Decision_tree">wikipage</a>. </li>
+<li>We used the rpart package to fit decision tree model</li>
+</ul>
+
+<pre><code class="r">require(rpart)
+modDT &lt;- rpart(mpg ~ wt + hp, data = mtcars)
+</code></pre>
+
+<ul>
+<li><p>The formula &quot;mpg ~ wt + hp&quot; informs rpart to use weight (wt) and horsepower (hp) as predictors to explain the difference of fuel consumption (mpg). </p></li>
+<li><p>In the online shiny application, you can specify the predictors and the outcomes from the side panel.</p></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Understanding the Decision Tree</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Let&#39;s take a look at the decision tree model returned by rpart:</p>
+
+<pre><code class="r">print(modDT)
+</code></pre>
+
+<pre><code>## n= 32 
+## 
+## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+## 1) root 32 1126.00 20.09  
+##   2) wt&gt;=2.393 25  320.40 17.59  
+##     4) hp&gt;=177.5 10   48.54 14.28 *
+##     5) hp&lt; 177.5 15   89.53 19.79 *
+##   3) wt&lt; 2.393 7   89.81 29.03 *
+</code></pre>
+
+<p>The resulting decision tree has 3 levels and 5 nodes. The decision criteria, the number of observations processed by the node, the deviance and the average value of mpg is shown for each node. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Display Decision Tree</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>To visualize the decision tree, we used the fancyRpartPlot function from the rattle package. </li>
+<li>The same decision tree is plotted in a nice format here. The color of the node indicates the average outcome value (mpg) for that node.</li>
+</ul>
+
+<pre><code class="r">fancyRpartPlot(modDT)            
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-4.png" alt="plot of chunk unnamed-chunk-4"> </p>
+
   </article>
   <!-- Presenter Notes -->
 </slide>
@@ -88,8 +152,20 @@ head(mtcars,3)
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='Decision Tree Models'>
+        data-slide=2 title='Decision Tree'>
          2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Understanding the Decision Tree'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Display Decision Tree'>
+         4
       </a>
     </li>
   </ul>

@@ -22,14 +22,40 @@ data(mtcars)
 head(mtcars,3)
 ```
 
-- We will build a tool that allows exploratory analysis of the mtcars dataset
+- We will build a tool that allows exploratory analysis of the mtcars dataset. You can find the shiny application online [here](http://ywcui.shinyapps.io/MTcar_DecisionTree/).
 
 --- .class #id 
 
-## Decision Tree Models
+## Decision Tree 
 
-- We will build a tool that allows exploratory analysis of the mtcars dataset
+- Decision tree is a decision support tool that uses a tree-like graph to understand consequences of decisions. More information can be found on this [wikipage](http://en.wikipedia.org/wiki/Decision_tree). 
+- We used the rpart package to fit decision tree model
 
+```{r}
+require(rpart)
+modDT <- rpart(mpg ~ wt + hp, data = mtcars)
+```
 
+- The formula "mpg ~ wt + hp" informs rpart to use weight (wt) and horsepower (hp) as predictors to explain the difference of fuel consumption (mpg). 
 
+- In the online shiny application, you can specify the predictors and the outcomes from the side panel.
 
+--- .class #id 
+
+## Understanding the Decision Tree
+
+Let's take a look at the decision tree model returned by rpart:
+```{r}
+print(modDT)
+```
+
+The resulting decision tree has 3 levels and 5 nodes. The decision criteria, the number of observations processed by the node, the deviance and the average value of mpg is shown for each node. 
+
+--- .class #id 
+## Display Decision Tree
+
+- To visualize the decision tree, we used the fancyRpartPlot function from the rattle package. 
+- The same decision tree is plotted in a nice format here. The color of the node indicates the average outcome value (mpg) for that node.
+```{r}
+fancyRpartPlot(modDT)            
+```
